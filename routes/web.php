@@ -361,6 +361,7 @@ Route::get('/recipe/{slug}', 'BlogController@blog_details')->name('blog.details'
 
 Route::post('/contact-us/send-email', 'HomeController@contact_email_send')->name('contact-send-email');
 
+
 //mobile app balnk page for webview
 Route::get('/mobile-page/{slug}', 'PageController@mobile_custom_page')->name('mobile.custom-pages');
 

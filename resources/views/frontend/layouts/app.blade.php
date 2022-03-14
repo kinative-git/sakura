@@ -51,7 +51,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
     @if(\App\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
@@ -89,7 +89,7 @@
 
     <style>
         body{
-            font-family: 'Raleway', sans-serif;
+            font-family: 'Lato', sans-serif;
             font-weight: 500;
         }
         :root{
@@ -154,7 +154,7 @@
         <!-- Header -->
         @include('frontend.inc.nav')
 
-            @yield('content')
+            {{-- @yield('content') --}}
 
 
         @include('frontend.inc.footer')

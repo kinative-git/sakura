@@ -137,7 +137,7 @@
                     <div class="py-5 px-4 text-left">
                         <img src="{{ static_asset('assets/img/about mission icon.png') }}" class="mb-3">
                         <h4 class="text-primary text-left fs-18 fw-700  text-uppercase">{{ translate('OUR MISSION') }}</h4>
-                    
+
                         <div class="lh-1-8  text-left">{!! get_page_setting('mission_description',$page->id,null,App::getLocale()) !!}</div>
                       </div>
                     </div>

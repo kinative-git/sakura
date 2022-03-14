@@ -246,6 +246,7 @@ class PageController extends Controller
 
     public function show_custom_page($slug, $type = ''){
         $page = Page::where('slug', $slug)->first();
+
         if($page != null){
             if($page->type == 'featured_page' || $type == 'featured_page'){
                 // dd('hit');

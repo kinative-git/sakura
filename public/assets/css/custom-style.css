@@ -18,7 +18,7 @@
 }
 :root{
 	--alter: #b9b9b9;
-	--alter2: #838383;
+	--alter2: #f3f3f3;
 	--alter3: #f3f3f3;
 	--alter4: #462f36;
     --alter5: #eaefda;
@@ -27,7 +27,7 @@
     --warning: #ffc519;
 }
 a:hover{
-    color: var(--orange)!important;
+    color: var(--primary)!important;
 }
 .text-truncate-1 {
     overflow: hidden;
@@ -72,7 +72,7 @@ a:hover{
 	font-family: 'Georgia', serif;
 }
 h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-weight: 600;
 }
 .roboto{
@@ -189,6 +189,25 @@ a:hover{
 .hover-category-menu.active {
     display: block;
 }
+
+
+.qck-links ul {
+    list-style-type: disc!important;
+    list-style-position: inside!important;
+    list-style-image: none;
+  }
+.left-half-circle{
+    border-top-left-radius:25px!important;
+    border-bottom-left-radius:25px!important;
+}
+.right-half-circle{
+    border-top-right-radius:25px!important;
+    border-bottom-right-radius:25px!important;
+}
+::-webkit-input-placeholder {
+
+    font-size: 12px!important;
+  }
 .hover-category-menu .sub-cat-menu {
     display: none;
     position: absolute;
@@ -591,7 +610,8 @@ a:hover{
   }
 
 .active{
-    color:red!important;
+    border-bottom: var(--primary) 2px solid!important;
+
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

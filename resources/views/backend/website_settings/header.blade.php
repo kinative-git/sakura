@@ -71,7 +71,7 @@
                             <input type="text" class="form-control" placeholder="" name="store_location" value="{{ get_setting('store_location') }}">
                         </div>
                     </div>
-                    <label class="col-md-3 col-from-label">{{ translate('About Us Link') }}</label>
+                    <label class="col-md-3 col-from-label">{{ translate('Support Link') }}</label>
                     <div class="col-md-8">
 
                         <div class="form-group">

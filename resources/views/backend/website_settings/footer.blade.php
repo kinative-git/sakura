@@ -317,6 +317,7 @@
                 </div>
             </div>
 
+
             <div class="card">
                 <div class="card-header">
                     <h6 class="fw-600 mb-0">{{ translate('Copyright Widget') }}</h6>
@@ -328,6 +329,24 @@
                             <label>{{ translate('Copyright Text') }}</label>
                             <input type="hidden" name="types[][{{ $lang }}]" value="frontend_copyright_text">
                             <textarea class="aiz-text-editor form-control" name="frontend_copyright_text" data-buttons='[["font", ["bold", "underline", "italic"]],["insert", ["link"]],["view", ["undo","redo"]]]' placeholder="Type.." data-min-height="150">@php echo get_setting('frontend_copyright_text', null, $lang); @endphp</textarea>
+                        </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="fw-600 mb-0">{{ translate('news Letter text') }}</h6>
+                </div>
+                <form action="{{ route('business_settings.update') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                   <div class="card-body">
+                        <div class="form-group">
+
+                            <input type="hidden" name="types[][{{ $lang }}]" value="news_letter_text">
+                            <textarea class="aiz-text-editor form-control" name="news_letter_text" data-buttons='[["font", ["bold", "underline", "italic"]],["insert", ["link"]],["view", ["undo","redo"]]]' placeholder="Type.." data-min-height="150">@php echo get_setting('news_letter_text', null, $lang); @endphp</textarea>
                         </div>
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>

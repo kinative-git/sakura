@@ -9,36 +9,36 @@
 </div> --}}
 @endif
 <!-- Top Bar -->
-<div class=" bg-black  z-1  ">
+<div class=" bg-primary  z-1  ">
     <div class="container">
-        <div class="row align-items-center py-10px text-white fs-11 fw-300">
+        <div class="row align-items-center py-10px text-white fs-12 fw-300">
             <div class="col-6 col-lg-3  ">
                <span class="roboto">Hotline: {{ get_setting('topbar_call_number') }}</span>
             </div>
             <div class="col-12 col-lg-6 text-center d-none d-lg-block ml-auto">
-                <div class="text-center">
-                    {{-- {{ get_setting('topbar_left') }} --}}
+                <div class="text-center fs-12  fw-300">
+                    {{ get_setting('topbar_left') }}
 
                 </div>
             </div>
             <div class="col-6 col-lg-3 d-flex justify-content-end">
                 <ul class="list-inline mb-0 pl-0 mobile-hor-swipe text-center d-flex justify-content-between align-items-center roboto">
-                    <li  class="list-inline-item  "> <a href="{{ get_setting('topbar_about_us') }}" class="text-white ">About Us</a> </li>
+                    <li  class="list-inline-item  "> <a href="{{ get_setting('topbar_about_us') }}" class="text-white ">Support</a> </li>
                     <li class="mr-1">|</li>
-                    <li  class="list-inline-item "><a href="{{get_setting('store_location') }}" class="text-white">Contact Us</a></li>
+                    <li  class="list-inline-item "><a href="{{get_setting('store_location') }}" class="text-white">FAQ</a></li>
                     <li class="mr-1 d-none d-lg-block">|</li>
                     <li class="list-inline-item ">
                         <div class=" d-none d-lg-block">
                             @auth
                                 @if(isAdmin())
-                                    <a href="{{ route('admin.dashboard') }}" class="text-reset fs-11 d-inline-block">{{ translate('My Panel')}}</a>
+                                    <a href="{{ route('admin.dashboard') }}" class="text-reset fs-12 d-inline-block">{{ translate('My Panel')}}</a>
                                 @else
-                                    <a href="{{ route('dashboard') }}" class="text-reset fs-11 d-inline-block">{{ translate('My Panel')}}</a>
+                                    <a href="{{ route('dashboard') }}" class="text-reset fs-12 d-inline-block">{{ translate('My Panel')}}</a>
                                 @endif
-                                    / <a href="{{ route('logout') }}" class="text-reset fs-11 d-inline-block">{{ translate('Logout')}}</a>
+                                    / <a href="{{ route('logout') }}" class="text-reset fs-12 d-inline-block">{{ translate('Logout')}}</a>
                             @else
-                                <a href="{{ route('user.login') }}" class="text-reset fs-11 d-inline-block">{{ translate('Login')}}</a>
-                                / <a href="{{ route('user.registration') }}" class="text-reset fs-11 d-inline-block">{{ translate('Sign Up')}}</a>
+                                <a href="{{ route('user.login') }}" class="text-reset fs-12 d-inline-block">{{ translate('Login')}}</a>
+                                / <a href="{{ route('user.registration') }}" class="text-reset fs-12 d-inline-block">{{ translate('Sign Up')}}</a>
                             @endauth
                         </div>
                     </li>
@@ -51,9 +51,9 @@
 </div>
 <!-- END Top Bar -->
 
-<header class="@if(get_setting('header_stikcy') == 'on') sticky-top @endif bg-white shadow-md" >
+<header class="@if(get_setting('header_stikcy') == 'on') sticky-top @endif bg-black shadow-md" >
     <div class="position-relative logo-bar-area z-1">
-        <div class=" text-dark pt-0 mt-0">
+        <div class=" text-white pt-0 mt-0">
             <div class="container">
 
                <div class="row d-felx align-items-center" >
@@ -75,44 +75,91 @@
 
                         </div>
                     </div>
+                    <div class="col-md-3 d-none d-lg-block">
+                        <div class="flex-grow-1 front-header-search d-flex align-items-center mr-2 " style="background-color: black;width:340px;margin-left:-1rem;" >
+                            <div class="position-relative flex-grow-1   src-bar ">
+                                <form action="{{ route('search') }}" method="GET" class="stop-propagation">
+                                    <div class="d-flex position-relative align-items-center">
+                                        <div class="d-lg-none" data-toggle="class-toggle" data-target=".front-header-search">
+                                            <button class="btn px-0 mx-0 text-white" type="button"><i class="la la-2x la-long-arrow-left"></i></button>
+                                        </div>
+                                        <div class="d-none d-lg-block  d-flex flex-grow-1 rounded-pill border border-primary overflow-hidden" style="height: 2.45rem;">
+                                            <input type="text" id="search" name="q" class="form-control left-half-circle  right-half-circle p-3 " placeholder="{{ translate('Search Item...') }}" name="email" required style="outline: none!important;border:0px!important;background-color:rgba(255, 255, 255, 0.014);color:rgb(209, 209, 209);">
+                                        </div>
+                                        <div class=" " style="margin-left: -2.3rem;">
+                                            <button class="btn btn-icon btn-circle btn-primary text-alter-2 fw-800 src-btn left-half-circle  right-half-circle" style="height: 2.45rem;width:2.45rem;" type="submit">
+                                                <i class="la la-search la-flip-horizontal fs-23 fw-700"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="typed-search-box stop-propagation document-click-d-none d-none bg-white rounded shadow-lg position-absolute left-0 top-100 w-100" style="min-height: 100px">
+                                    <div class="search-preloader absolute-top-center">
+                                        <div class="dot-loader"><div></div><div></div><div></div></div>
+                                    </div>
+                                    <div class="search-nothing d-none p-3 text-center fs-16">
+
+                                    </div>
+                                    <div id="search-content" class="text-left">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         @if ( get_setting('header_menu_labels') !=  null )
-                        <div class="col-md-8 d-none d-lg-block  pl-md-0">
+                        <div class="col-md-7 d-none d-lg-block  pl-md-0">
                             @php
-                                 $current_route = Route::currentRouteName()
+                                if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+                                    $current_route = "https://";
+                                else
+                                    $current_route = "http://";
+                                 $current_route.=$_SERVER['HTTP_HOST'];
+                                 $current_route.=$_SERVER['REQUEST_URI'];
+                                //  dd($current_route);
                             @endphp
                                 <ul class="list-inline mb-0 pl-0  pt-1 mobile-hor-swipe text-center d-flex justify-content-end align-items-center">
-
-                                    <li class="list-inline-item mr-0 ml-0">
-                                        <a href="{{ route('home.shop') }}" class="fs-14  px-3 py-2 d-inline-block fw-700 hov-opacity-100 text-reset  text-uppercase @if ($current_route=='home.shop')
-                                        text-orange
-                                    @endif">
-                                            shop
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item mr-0 ml-0">
-                                        <a href="javascript:void(0);" class="fs-14  px-3 py-2 d-inline-block fw-700 hov-opacity-100 text-reset  text-uppercase " data-toggle="class-toggle" data-target=".mobile-category-sidebar" data-same=".mobile-category-trigger">
-                                        category
-                                        <i class="las la-angle-down ml-1 fs-14 fw-700"></i>
-                                        </a>
-                                    </li>
                                     @foreach (json_decode( get_setting('header_menu_labels'), true) as $key => $value)
+                                    <li class="list-inline-item mr-0 ml-0 @if($key==count(json_decode( get_setting('header_menu_labels'), true))-1) border-right border-primary @endif">
 
-                                    <li class="list-inline-item mr-0 ml-0">
-                                            <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-14  px-3 py-2 d-inline-block fw-700 hov-opacity-100 text-reset  text-uppercase ">
+                                            <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-13  px-md-3 py-2 d-inline-block fw-500 hov-opacity-100 text-reset  text-uppercase @if($current_route== json_decode( get_setting('header_menu_links'), true)[$key]) active @endif">
                                                 {{ $value }}
                                             </a>
                                     </li>
                                     @endforeach
-                                    <li class="list-inline-item mr-0 ml-0 d-flex align-items-cetnter">
-                                        <a href="#" class="fs-14  px-3 py-2 d-inline-block fw-700 hov-opacity-100 text-reset  text-uppercase ">
-                                           <img src="{{ static_asset('assets/img/hot.png') }}" alt="" class="mb-2"> campaigns
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item mr-0 ml-0 d-flex align-items-cetnter">
-                                        <a href="#" class="fs-14  px-3 py-2 d-inline-block fw-700 hov-opacity-100 text-reset  text-uppercase ">
-                                           <img src="{{ static_asset('assets/img/percent.png') }}" alt=""> on sale
-                                        </a>
-                                    </li>
+                                    <div class="px-1 pl-3 h-100  d-none d-lg-block">
+                                        <div class="d-flex align-items-center text-orange h-100 cart-toggler cart-trigger bg-base-1 rounded-left text-center z-1021 social"  type="button" data-toggle="class-toggle" data-target=".cart-sidebar"  data-toggle="dropdown" data-display="static" style="margin-top: -2px;">
+                                            <div class="position-relative">
+                                              {{-- <img src="{{ static_asset('assets/img/cart.png') }}" class="mt-md-2" alt="" > --}}
+                                              <a class="p-1 d-block border-gray-700 text-white fs-24" href="javascript:void(0);">
+                                                <i class="las la-shopping-cart "></i>
+                                            </a>
+
+                                                <span class="absolute-top-right" style="top: 3px;right: -5px;">
+                                                    @php
+                                                        if(auth()->user() != null) {
+                                                            $user_id = Auth::user()->id;
+                                                            $cart = \App\Cart::where('user_id', $user_id)->get();
+                                                        } else {
+                                                            $temp_user_id = Session()->get('temp_user_id');
+                                                            if($temp_user_id) {
+                                                                $cart = \App\Cart::where('temp_user_id', $temp_user_id)->get();
+                                                            }
+                                                        }
+                                                    @endphp
+                                                    @php
+                                                        $count = (isset($cart) && count($cart)) ? count($cart) : 0;
+                                                    @endphp
+
+                                                    @if($count>0)
+                                                        <span class="badge badge-inline badge-pill text-white cart-count shadow-md " style="width: 16px;height: 16px;font-size: 8px;background-color:var(--primary);">{{ $count}}</span>
+                                                    @else
+                                                        <span class="badge badge-inline badge-pill text-white cart-count shadow-md " style="width: 16px;height: 16px;font-size: 8px;background-color:var(--primary);">0</span>
+                                                    @endif
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </ul>
                             </div>
                         @endif
@@ -126,47 +173,7 @@
                         </div> --}}
 
 
-                    <div class="col-md-2 col-sm-6 d-flex justify-content-end align-items-center">
-                        <div class="h-100 d-flex align-items-center ml-1 d-none d-lg-block " id="wishlist">
-                                @include('frontend.partials.wishlist')
-                        </div>
-                        <div class="px-1 pl-3 h-100  d-none d-lg-block">
-                            <div class="d-flex align-items-center text-orange h-100 cart-toggler cart-trigger bg-base-1 rounded-left text-center z-1021 social"  type="button" data-toggle="class-toggle" data-target=".cart-sidebar"  data-toggle="dropdown" data-display="static" style="margin-top: -2px;">
-                                <div class="position-relative">
-                                  <img src="{{ static_asset('assets/img/cart.png') }}" class="mt-md-2" alt="" >
-                                    <span class="absolute-top-right" style="top: 3px;right: -5px;">
-                                        @php
-                                            if(auth()->user() != null) {
-                                                $user_id = Auth::user()->id;
-                                                $cart = \App\Cart::where('user_id', $user_id)->get();
-                                            } else {
-                                                $temp_user_id = Session()->get('temp_user_id');
-                                                if($temp_user_id) {
-                                                    $cart = \App\Cart::where('temp_user_id', $temp_user_id)->get();
-                                                }
-                                            }
-                                        @endphp
-                                        @php
-                                            $count = (isset($cart) && count($cart)) ? count($cart) : 0;
-                                        @endphp
 
-                                        @if($count>0)
-                                            <span class="badge badge-inline badge-pill text-white cart-count shadow-md " style="width: 16px;height: 16px;font-size: 8px;background-color:red;">{{ $count}}</span>
-                                        @else
-                                            <span class="badge badge-inline badge-pill text-white cart-count shadow-md " style="width: 16px;height: 16px;font-size: 8px;background-color:red;">0</span>
-                                        @endif
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="h-100 ml-1 d-none d-lg-block mt-md-2 ml-md-2 social" >
-                            {{-- <a class="p-1 d-lg-none  text-primary   mt-2 mr-2" href="javascript:void(0);" > --}}
-                                <img data-toggle="class-toggle" data-target=".topbar-search"  src="{{ static_asset('assets/img/magni.png') }}" alt="" >
-                            {{-- </a> --}}
-
-                        </div>
-
-                    </div>
 
                 </div>
             </div>

@@ -1,35 +1,6 @@
-<section class="mb-n7 position-relative z-2" >
-    <div class="container  ">
-        <div class="bg-white p-3 p-md-5 border border-gray">
-            <div class="row justify-content-center d-flex flex-column justify-content-center align-items-center">
-               <div class="col-md-8 text-center text-cetner mb-3 mb-md-0 my-2 " >
-                    <div class="py-4 d-flex align-items-center justify-content-between" style=" background-image: url({{ static_asset('assets/img/backicon.png') }});
-                    background-repeat: no-repeat;background-position: center;">
-                        <img src="{{ static_asset('assets/img/q1.png') }}" alt="">
-                        <h5 class="text text-uppercase opacity-80 pt-md-2" style="letter-spacing:3px;">join our newsletter to get offers</h5>
-                        <img src="{{ static_asset('assets/img/q2.png') }}" alt="">
-                    </div>
-               </div>
-                <div class="col-md-6 col-xl-6 mt-2">
-                    <form class="form-inline" method="POST" action="{{ route('subscribers.store') }}">
-                        @csrf
-                        <div class="input-group flex-grow-1 border border-gray-500 p-1">
-                            <input type="email" class="form-control w-lg-270px" placeholder="{{ translate('Write your email') }}" name="email" required style="outline: none!important;border:0px!important;">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-primary px-5 text-uppercase fs-13" style="letter-spacing: 2px">{{ translate('Submit') }}</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-
-
-<section class="bg-black text-light bg-no-repeat bg-center mt-4 pt-3" style=" background-image:url({{ static_asset('assets/img/footerbg.jpg') }});background-repeat: no-repeat; background-size: cover;" >
-    <div class="container pt-3">
+<section class="bg-black text-light bg-no-repeat bg-center mt-4 pt-3" style=" background-image:url({{ static_asset('assets/img/footer_bg.jpg') }});background-repeat: no-repeat; background-size: cover;" >
+    <div class="container pt-5">
             <div class="row py-3">
                 <div class="col-lg-5 col-xl-5 text-center text-md-left mt-4 ">
                     <div class="mt-4">
@@ -40,14 +11,17 @@
                                 <img class="lazyload" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"  data-src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" height="44">
                             @endif
                         </a>
+                        <h4 class="text text-uppercase text-alter-2 fw-600 fs-22 my-4" >about our company</h4>
                         <div class="my-1 ">
-                            <div class= "opacity-100 text-alter-2 fw-400 fs-17 roboto">
+                            <div class= "opacity-100 text-alter-2 fw-400 fs-14 roboto">
                                 {!! get_setting('about_us_description',null,null) !!}
                             </div>
 
                         </div>
                         <br>
-
+                        <div>
+                            <a href="{{ url('/about-us') }}" class="text-primary fs-14 fw-500">Read More</a>
+                        </div>
                         <div class="w-300px mw-100 mx-auto mx-md-0">
                             @if(get_setting('play_store_link') != null)
                                 <a href="{{ get_setting('play_store_link') }}" target="_blank" class="d-inline-block mr-3 ml-0">
@@ -61,57 +35,28 @@
                             @endif
                         </div>
                     </div>
-                    <div class="">
-                        <ul class="list-inline my-1 my-md-0 social colored">
-                            @if ( get_setting('facebook_link') !=  null )
-                            <li class="list-inline-item">
-                                <a href="{{ get_setting('facebook_link') }}" target="_blank" class="facebook"><i class="lab la-facebook-f"></i></a>
-                            </li>
-                            @endif
-                            @if ( get_setting('twitter_link') !=  null )
-                            <li class="list-inline-item">
-                                <a href="{{ get_setting('twitter_link') }}" target="_blank" class="twitter"><i class="lab la-twitter"></i></a>
-                            </li>
-                            @endif
-                            @if ( get_setting('instagram_link') !=  null )
-                            <li class="list-inline-item">
-                                <a href="{{ get_setting('instagram_link') }}" target="_blank" class="instagram"><i class="lab la-instagram"></i></a>
-                            </li>
-                            @endif
-                            @if ( get_setting('youtube_link') !=  null )
-                            <li class="list-inline-item">
-                                <a href="{{ get_setting('youtube_link') }}" target="_blank" class="youtube"><i class="lab la-youtube"></i></a>
-                            </li>
-                            @endif
-                            @if ( get_setting('linkedin_link') !=  null )
-                            <li class="list-inline-item">
-                                <a href="{{ get_setting('linkedin_link') }}" target="_blank" class="linkedin"><i class="lab la-linkedin-in"></i></a>
-                            </li>
-                            @endif
-                        </ul>
-                    </div>
+
                 </div>
                 <div class="col-lg-3  col-md-2 mt-4">
-                    <div class="text-center text-md-left mt-4">
-                        <h5 class="text text-uppercase text-alter fw-600 fs-18 my-2" style="letter-spacing:4px;">Important links</h5>
-                        <ul class="list-unstyled my-4 d-none d-lg-block"  style=" list-style-type: none;" >
-                            @if ( get_setting('widget_one_labels',null,null) !=  null )
-                                @foreach (json_decode( get_setting('widget_one_labels',null,null), true) as $key => $value)
-                                <li class="mb-2 fs-13 my-2 d-flex align-items-center " >
-                                    <img src="{{ static_asset('assets/img/circle.png') }}" alt="" class="mr-2">
-                                    <a href="{{ json_decode( get_setting('widget_one_links'), true)[$key] }}" class= "opacity-100 hov-opacity-100 text-reset text-alter-2 fw-400 fs-17 roboto ">
+
+                    <div class="text-center text-md-left mt-4 qck-links">
+                        <h5 class="text text-uppercase text-alter-2 fw-600 fs-18 my-2" >quick links</h5>
+                        <ul class="list-unstyled my-4 d-none d-lg-block"  >
+                            @if ( get_setting('widget_one_labels',null,'en') !=  null )
+                                @foreach (json_decode( get_setting('widget_one_labels',null,'en'), true) as $key => $value)
+                                <li class=" fs-24 text-primary  " >
+                                    <a href="{{ json_decode( get_setting('widget_one_links'), true)[$key] }}" class= "opacity-100 hov-opacity-100 text-reset text-alter-2 fw-400 fs-14  ">
                                         {{ $value }}
                                     </a>
                                 </li>
                                 @endforeach
                             @endif
                         </ul>
-                        <ul class="list-unstyled my-4 d-lg-none"  style=" list-style-type: none;" >
-                            @if ( get_setting('widget_one_labels',null,null) !=  null )
-                                @foreach (json_decode( get_setting('widget_one_labels',null,null), true) as $key => $value)
-                                <li class="mb-2 fs-13 my-2 d-flex align-items-center justify-content-center" >
-                                    <img src="{{ static_asset('assets/img/circle.png') }}" alt="" class="mr-2">
-                                    <a href="{{ json_decode( get_setting('widget_one_links'), true)[$key] }}" class= "opacity-100 hov-opacity-100 text-reset text-alter-2 fw-400 fs-17 roboto ">
+                        <ul class="list-unstyled my-4 d-lg-none"  >
+                            @if ( get_setting('widget_one_labels',null,'en') !=  null )
+                                @foreach (json_decode( get_setting('widget_one_labels',null,'en'), true) as $key => $value)
+                                <li class="fs-24 text-primary  " >
+                                    <a href="{{ json_decode( get_setting('widget_one_links'), true)[$key] }}" class= "opacity-100 hov-opacity-100 text-reset text-alter-2 fw-400 fs-14  ">
                                         {{ $value }}
                                     </a>
                                 </li>
@@ -122,22 +67,74 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-4 mt-4 ">
+                    <div class="text-center text-md-left my-4">
+                        <h5 class="text text-uppercase text-alter-2 fw-600 fs-18 my-2" >subscribe to newsletter</h5>
+                        <p class="l-h-2">
+                            {!! get_setting('news_letter_text', null, 'en') !!}
+                        </p>
+                        <form class="form-inline" method="POST" action="{{ route('subscribers.store') }}">
+                            @csrf
+                            <div class="input-group flex-grow-1 border border-primary left-half-circle right-half-circle my-2" >
+                                <input type="email" class="form-control left-half-circle  right-half-circle p-3 " placeholder="{{ translate('Give Your Email...') }}" name="email" required style="outline: none!important;border:0px!important;background-color:rgba(255, 255, 255, 0.014);color:rgb(209, 209, 209);">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary px-5  fs-13 left-half-circle right-half-circle" >{{ translate('Submit') }}</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
                     <div class="text-center text-md-left mt-4">
-                        <h5 class="text text-uppercase text-alter fw-600 fs-18 my-2" style="letter-spacing:4px;">Contact us</h5>
+                        <h5 class="text text-uppercase text-alter-2 fw-600 fs-18 my-2" >Contact us</h5>
                         <ul class="list-unstyled fs-12 mt-4">
-                            <li class="mb-2 text-alter-2 fw-400 fs-17 roboto">
-                                Address: <br>
+                            <li class="mb-2 text-alter-2 fw-400 fs-14 roboto">
+                                {{-- Address: <br> --}}
                                 <span class="d-block  opacity-100 mb-2">{{ get_setting('contact_address',null,null) }}</span>
                              </li>
-                                <li class="mb-1 text-alter-2 fw-400 fs-17 roboto my-3">
+                                @if(get_setting('contact_phone'))
+                                    <li class="mb-1 text-alter-2 fw-400 fs-14 roboto my-3">
 
-                                    Phone: <br><span>{{ get_setting('contact_phone') }}</span>
-                                </li>
-                                <li class="text-alter-2 fw-400 fs-17 roboto">
-                                    Email:<br><span>
-                                    {{ get_setting('contact_email') }}</span>
-                                </li>
+                                        {{-- Phone: <br> --}}
+                                        <span>{{ get_setting('contact_phone') }}</span>
+                                    </li>
+                                @endif
+                                @if(get_setting('contact_email'))
+                                    <li class="text-alter-2 fw-400 fs-14 roboto">
+                                        {{-- Email:<br> --}}
+                                        <span>
+                                        {{ get_setting('contact_email') }}</span>
+                                    </li>
+                                @endif
+
                         </ul>
+                        <div class="">
+                            <ul class="list-inline my-1 my-md-0 social colored">
+                                @if ( get_setting('facebook_link') !=  null )
+                                <li class="list-inline-item">
+                                    <a href="{{ get_setting('facebook_link') }}" target="_blank" class="facebook"><i class="lab la-facebook-f"></i></a>
+                                </li>
+                                @endif
+                                @if ( get_setting('twitter_link') !=  null )
+                                <li class="list-inline-item">
+                                    <a href="{{ get_setting('twitter_link') }}" target="_blank" class="twitter"><i class="lab la-twitter"></i></a>
+                                </li>
+                                @endif
+                                @if ( get_setting('instagram_link') !=  null )
+                                <li class="list-inline-item">
+                                    <a href="{{ get_setting('instagram_link') }}" target="_blank" class="instagram"><i class="lab la-instagram"></i></a>
+                                </li>
+                                @endif
+                                @if ( get_setting('youtube_link') !=  null )
+                                <li class="list-inline-item">
+                                    <a href="{{ get_setting('youtube_link') }}" target="_blank" class="youtube"><i class="lab la-youtube"></i></a>
+                                </li>
+                                @endif
+                                @if ( get_setting('linkedin_link') !=  null )
+                                <li class="list-inline-item">
+                                    <a href="{{ get_setting('linkedin_link') }}" target="_blank" class="linkedin"><i class="lab la-linkedin-in"></i></a>
+                                </li>
+                                @endif
+                            </ul>
+                        </div>
 
 
                         {{-- <ul class="list-unstyled mb-3 mt-2">
@@ -167,35 +164,34 @@
 
 
 
-        <div class="row align-items-center"  style="min-height: 4rem;">
 
-            <div class="col">
-                <div class="text-center text-xl-center">
-                    <ul class="list-inline my-4">
-                        @if ( get_setting('payment_method_images') !=  null )
-                            @foreach (explode(',', get_setting('payment_method_images')) as $key => $value)
-                                <li class="list-inline-item">
-                                    <img src="{{ uploaded_asset($value) }}" height="27" class="mw-100">
-                                </li>
-                            @endforeach
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 
 
 <!-- FOOTER -->
-<footer class="pt-3 pb-7 pb-xl-4  bg-black">
+<footer class=" bg-primary">
     <div class="container">
         <div class="row d-flex align-items-center justify-content-center">
-            <div class="col-lg-6">
-                <div class="text-center text-alter text-md-center fs-18 fw-300 opacity-80 roboto "  current-verison="{{get_setting("current_version")}}" style="letter-spacing:2px;">
+            <div class="col-lg-6 d-flex justify-content-start align-items-center">
+                <div class="text-left text-alter-2 text-md-center fs-14 fw-300 opacity-80 roboto "  current-verison="{{get_setting("current_version")}}" >
                     {!! get_setting('frontend_copyright_text',null,App::getLocale()) !!}
                 </div>
             </div>
+                <div class="col-lg-6 d-flex justify-content-end align-items-center">
+                    <div class="text-center text-xl-right">
+                        <ul class="list-inline my-4">
+                            @if ( get_setting('payment_method_images') !=  null )
+                                @foreach (explode(',', get_setting('payment_method_images')) as $key => $value)
+                                    <li class="list-inline-item">
+                                        <img src="{{ uploaded_asset($value) }}" height="27" class="mw-100">
+                                    </li>
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
+                </div>
+
 
         </div>
     </div>
