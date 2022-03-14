@@ -149,12 +149,12 @@
 </head>
 <body class=" homepage " style="background-color: #ffffff;">
     <!-- aiz-main-wrapper -->
-    <div class="aiz-main-wrapper d-flex flex-column" style="width:100vw!important; background-color: #ffffff;">
+    <div class="aiz-main-wrapper d-flex flex-column" style="width:100vw!important; background-image:url('{{ static_asset('assets/img/bg.jpg') }}');">
 
         <!-- Header -->
         @include('frontend.inc.nav')
 
-            {{-- @yield('content') --}}
+            @yield('content')
 
 
         @include('frontend.inc.footer')

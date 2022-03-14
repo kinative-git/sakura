@@ -108,6 +108,76 @@
 				</form>
 			</div>
 		</div>
+        <div class="card">
+			<div class="card-header">
+				<h6 class="mb-0">{{ translate('About us') }}</h6>
+			</div>
+			<div class="card-body">
+				<form action="{{ route('business_settings.update') }}" method="POST" enctype="multipart/form-data">
+					@csrf
+	                <div class="form-group row">
+						<label class="col-md-3 col-from-label">{{translate('Title')}}</label>
+						<div class="col-md-8">
+							<div class="form-group">
+								<input type="hidden" name="types[][{{ $lang }}]" value="home_about_title">
+								<input type="text" class="form-control" placeholder="" name="home_about_title" value="{{ get_setting('home_about_title', null, $lang) }}">
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-from-label">{{translate('whoe we are learn more link')}}</label>
+						<div class="col-md-8">
+							<div class="form-group">
+								<input type="hidden" name="types[][{{ $lang }}]" value="home_about_link">
+								<input type="text" class="form-control" placeholder="" name="home_about_link" value="{{ get_setting('home_about_link', null, $lang) }}">
+							</div>
+						</div>
+					</div>
+                    <div class="form-group">
+                        <label>{{ translate('About description') }}</label>
+                        <input type="hidden" name="types[][{{ $lang }}]" value="home_about">
+                        <textarea class="aiz-text-editor form-control" name="home_about" data-buttons='[["font", ["bold", "underline", "italic"]],["insert", ["link"]],["para", ["ul", "ol"]],["view", ["undo","redo"]]]' placeholder="Type.." data-min-height="150">
+                            @php echo get_setting('home_about', null, $lang); @endphp
+                        </textarea>
+                    </div>
+
+                    <label>{{ translate('About Image') }}</label>
+					<div class="home-about-target">
+						<input type="hidden" name="types[]" value="home_about_image">
+						{{-- @if (get_setting('home_about_image') != null) --}}
+
+								<div class="row gutters-5">
+									<div class="col-md-6">
+										<div class="form-group">
+											<div class="input-group" data-toggle="aizuploader" data-type="image">
+				                                <div class="input-group-prepend">
+				                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
+				                                </div>
+				                                <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+				                                <input type="hidden" name="home_about_image" class="selected-files" value="{{ json_decode(get_setting('home_about_image'), true) }}">
+				                            </div>
+				                            <div class="file-preview box sm">
+				                            </div>
+			                            </div>
+									</div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="hidden" name="types[]" value="home_about_link">
+												<input type="text" class="form-control" placeholder="http://" name="home_about_link" value="{{ json_decode(get_setting('home_about_link'), true) }}">
+                                        </div>
+                                    </div>
+
+								</div>
+                        {{-- @endif --}}
+
+					</div>
+
+					<div class="text-right">
+						<button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
+					</div>
+				</form>
+			</div>
+		</div>
 
 
 
@@ -496,6 +566,9 @@
 						<div class="brands-target">
 							<input type="hidden" name="types[]" value="authentic_images">
 							<input type="hidden" name="types[]" value="authetic_names">
+							<input type="hidden" name="types[]" value="authetic_desc">
+
+
 							@if (get_setting('authentic_images') != null)
                             {{-- {{ dd(json_decode(get_setting('authentic_images'), true)) }} --}}
 								@foreach (json_decode(get_setting('authentic_images'), true) as $key => $value)
@@ -517,6 +590,12 @@
                                             {{-- {{ dd(json_decode(get_setting('authetic_names'), true)) }} --}}
 											<div class="form-group">
 												<input type="text" class="form-control" placeholder="{{ translate('Text') }}" name="authetic_names[]" @if(json_decode(get_setting('authetic_names'), true) !=null) value="{{ json_decode(get_setting('authetic_names'), true)[$key] }}"@endif>
+											</div>
+										</div>
+                                        <div class="col-lg">
+                                            {{-- {{ dd(json_decode(get_setting('authetic_names'), true)) }} --}}
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="{{ translate('Text') }}" name="authetic_desc[]" @if(json_decode(get_setting('authetic_desc'), true) !=null) value="{{ json_decode(get_setting('authetic_names'), true)[$key] }}"@endif>
 											</div>
 										</div>
 
@@ -552,6 +631,11 @@
 								<div class="col-lg">
 									<div class="form-group">
 										<input type="text" class="form-control" placeholder="{{ translate('Text') }}" name="authetic_names[]" >
+									</div>
+								</div>
+                                <div class="col-lg">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="{{ translate('Text') }}" name="authetic_desc[]" >
 									</div>
 								</div>
 								<div class="col-auto">

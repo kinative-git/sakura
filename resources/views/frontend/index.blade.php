@@ -3,147 +3,123 @@
 @section('content')
     {{-- Categories , Sliders . Today's deal --}}
 
-        <div class="container-fluid" style="background-color: #eeeef0" >
-            <div class="d-none d-lg-block">
-                <div class="row d-flex justify-content-between pt-2">
-                    @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
-                    {{-- <a href="{{ json_decode(get_setting('home_slider_links'), true)[0] }}"> --}}
-                        <div class="col mx-md-1  main-bnr d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[0]) }})">
-                            <h5 class="text text-white text-uppercase opacity-100 pt-md-2 fs-18" style="letter-spacing:5px;">your lifestyle choice</h5>
-                            <a href="{{ json_decode(get_setting('home_slider_links'), true)[0] }}" class="btn btn-lg text-uppercase btn-black my-2 ">find your style</a>
-                        </div>
-                    {{-- </a> --}}
-                    {{-- <a href="{{ json_decode(get_setting('home_slider_links'), true)[0] }}"> --}}
-                        <div class="col mx-md-1 mr-md-3 main-bnr d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[1]) }})">
-                            <h5 class="text text-white text-uppercase opacity-100 pt-md-2 " style="letter-spacing:5px;">your lifestyle choice</h5>
-                            <a href="{{ json_decode(get_setting('home_slider_links'), true)[1] }}" class="btn btn-lg text-uppercase  btn-black  my-2 ">find your style</a>
-                        </div>
-                    {{-- </a> --}}
-                </div>
-            </div>
-            <div class="row pt-1 d-lg-none">
+    <div class="home-banner-area text-white pt-0px">
+        <div class="container-fluid" style="padding-left:0px!important;padding-right:0px!important; ">
+            <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height dot-small-white" data-dots="true" data-autoplay="true" data-arrows="false">
                 @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
-                {{-- @foreach ($slider_images as $key => $value)
+                @foreach ($slider_images as $key => $value)
                     <div class="carousel-box">
                         <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}" class="text-reset d-block">
-
+                            <img src="{{ uploaded_asset($value) }}" class="img-fluid w-100">
                         </a>
                     </div>
-                @endforeach --}}
-               <div class="col-12 d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[0])}}); background-repeat: no-repeat;background-size: contain;width:100vw;height:245px;background-size: cover;">
-                    <h5 class="text text-white text-uppercase opacity-100 pt-md-2 fs-18 text-center" style="letter-spacing:5px;">your lifestyle choice</h5>
-                    <a href="{{ json_decode(get_setting('home_slider_links'), true)[0] }}" class="btn btn-lg text-uppercase btn-black my-2 ">find your style</a>
-               </div>
-               <div class="col-12 d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[1])}}); background-repeat: no-repeat;background-size: contain;width:100vw;height:245px;background-size: cover;">
-                    <h5 class="text text-white text-uppercase opacity-100 pt-md-2 text-center" style="letter-spacing:5px;">your lifestyle choice</h5>
-                    <a href="{{ json_decode(get_setting('home_slider_links'), true)[1] }}" class="btn btn-lg text-uppercase  btn-black  my-2 ">find your style</a>
-                </div>
+                @endforeach
             </div>
-
         </div>
+    </div>
 
+    {{-- featured cats start --}}
+
+    <section class="mt-5">
+        <div class="container my-3">
+
+            <div class="aiz-carousel half-outside-arrow dot-small-black gutters-5" data-xl-items="5" data-lg-items="5"  data-md-items="5" data-sm-items="2" data-xs-items="2"  data-items="2" data-infinite='true' data-autoplay="false" data-dots="false">
+                @foreach (\App\Category::where('featured','1')->get() as $key => $cat)
+
+                        <div class="carousel-box ">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                               <div class="h-140">
+                                <img src="{{ uploaded_asset($cat->icon) }}"  class="img-fit" alt="">
+                               </div>
+                                <span class="fs-14 fw-600 mx-3">{{ $cat->name }}</span>
+                            </div>
+                        </div>
+
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- featured cats end  --}}
+
+    {{-- featured products start --}}
         <div class="row justify-content-center d-flex flex-column justify-content-center align-items-center my-3">
             <div class="col text-center text-cetner mb-3 mb-md-0 my-2 " >
-                 <div class="py-4 d-flex align-items-center justify-content-center" style=" background-image: url({{ static_asset('assets/img/backicon.png') }});
-                 background-repeat: no-repeat;background-position: center;">
-                     <h5 class="text text-uppercase opacity-80 pt-md-2 text-cetner fs-19 fw-700" style="letter-spacing:4px;">featured products</h5>
+                 <div class="py-4 d-flex flex-column align-items-center justify-content-center" >
+                     <div class="d-flex align-items-center text-primary"><div class="line"></div><span class="fs-14 fw-500 mx-3">Picked for You</span><div class="line"></div></div>
+                     <h5 class="text text-uppercase opacity-100 pt-md-2 text-cetner fs-22 fw-700" >featured products</h5>
                  </div>
             </div>
         </div>
-
         <section>
-            <div class="aiz-carousel half-outside-arrow dot-small-black" data-xl-items="5" data-lg-items="5"  data-md-items="5" data-sm-items="2" data-xs-items="2"  data-items="2" data-infinite='true' data-autoplay="false" data-dots="false">
-                @foreach (\App\Product::where('featured','1')->get() as $key => $product)
-                    @if ($product != null && $product->published != 0)
-                        <div class="carousel-box ">
-                            @include('frontend.partials.product_box_1',['product'=>$product])
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </section>
-        {{-- style=" background: url({{ static_asset('assets/img/video.jpg')}}); background-repeat: no-repeat;background-size: contain;height:350px;" --}}
-        {{-- -webkit-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
-                -moz-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75); --}}
-        <section class="my-5 d-none d-sm-block">
-            <div class="row mb-5 ">
-                <div class="col-md-2"></div>
-                <div class="col d-flex"  data-toggle="modal" data-target="#video_modal">
-                    <img src="{{ static_asset('assets/img/videol.png') }}" alt="">
-                        <div style="position:relative;">
-                            <img src="{{ static_asset('assets/img/video.jpg')}}" style="
-                            box-shadow: 2px -10px 10px rgba(75, 75, 75, 0.26);"  alt="">
-                            <div class="d-flex align-items-center" style="position: absolute;
-                            bottom: 8px;
-                            right: 16px;">
-                                <span class="fs-14 roboto text-white text-uppercase mx-2">watch eid promo</span>
-                                <img src="{{ static_asset('assets/img/p.png') }}" alt="">
+            <div class="container">
+                <div class="aiz-carousel half-outside-arrow dot-small-black gutters-5" data-xl-items="5" data-lg-items="5"  data-md-items="5" data-sm-items="2" data-xs-items="2"  data-items="2" data-infinite='true' data-autoplay="false" data-dots="true">
+                    @foreach (\App\Product::where('featured','1')->get() as $key => $product)
+                        @if ($product != null && $product->published != 0)
+                            <div class="carousel-box ">
+                                @include('frontend.partials.product_box_1',['product'=>$product])
                             </div>
-                        </div>
-                    <img src="{{ static_asset('assets/img/videor.png') }}" alt="">
-                </div>
-
-            </div>
-        </section>
-        <section class="my-5 d-lg-none">
-            <div class="row mb-5 ">
-                <div class="col d-flex">
-                        <div style="position:relative;">
-                            <img src="{{ static_asset('assets/img/video.jpg')}}" class="img-fit" style="
-                            box-shadow: 2px -10px 10px rgba(75, 75, 75, 0.26);"  alt="">
-                            <div class="d-flex align-items-center" style="position: absolute;
-                            bottom: 8px;
-                            right: 16px;">
-                                <span class="fs-14 roboto text-white text-uppercase mx-2">{{ get_setting('promo_text') }}</span>
-                                <img src="{{ static_asset('assets/img/p.png') }}" alt="">
-                            </div>
-                        </div>
-                </div>
-
-            </div>
-        </section>
-
-   {{-- banner under section  --}}
-   {{-- <div class="container mt-1 mb-2">
-        @if (get_setting('banner_under_cat') !=null)
-
-            <div class="aiz-carousel gutters-5 outside-arrow dot-small-black" data-items="4" data-xl-items="4" data-lg-items="4"  data-md-items="4" data-sm-items="2" data-xs-items="2" data-infinite='true' data-autoplay="true" data-dots="true" data-arrows="true">
-                @php
-                $featured_categories = \App\Category::whereIn('id', json_decode(get_setting('banner_under_cat')))->get();
-
-                @endphp
-                @foreach ($featured_categories as $key => $category)
-                @php
-
-                    $cat_name=$category->name
-                @endphp
-                            <div class="carousel-box">
-                                <div class="bg-white shadow-sm p-4 mb-2">
-                                    <a href="{{ route('products.category', $category->slug) }}" class="text-reset text-center">
-                                        <div class="d-flex align-items-center justify-content-center caraimg" >
-                                            <img
-                                            src="{{ static_asset('assets/img/placeholder.jpg') }}"
-                                            data-src="{{ uploaded_asset($category->banner) }}"
-                                            alt="{{ $cat_name }}"
-                                            class="lazyload   mw-100 "
-
-
-                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
-                                        >
-                                        </div>
-                                    </a>
-                                        <span class="text-truncate text-center fs-13  fw-600 d-block">{{ $cat_name }}</span>
-
-                                </div>
-
-                            </div>
+                        @endif
                     @endforeach
+                </div>
+            </div>
+        </section>
+
+    {{-- featured products end  --}}
+
+    {{-- about product start --}}
+    <section class="py-lg-5 py-4 my-5 position-relative bg-white">
+        <div class="container">
+            <div class="row py-lg-5 d-flex align-items-center">
+                <div class="col-lg-6 my-4">
+                    <img src="{{ uploaded_asset(get_setting('home_about_image')) }}" class="img-fluid w-100" alt="">
+                </div>
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center text-primary"><span class="fs-14 fw-500 mx-3">ValueProposition</span><div class="line"></div></div>
+                    <h5 class="text text-uppercase opacity-100 pt-md-2 text-cetner fs-22 fw-700" >{{ get_setting('home_about_title', null, App::getLocale()) }}</h5>
+                    <h2 class="text-uppercase text-alter-6 fs-18 fw-700 my-2"></h2>
+                    <div class="lh-1-9 my-4 mr-1 text-justify ">{{ get_setting('home_about', null, App::getLocale()) }}</div>
+
+                    <a href="{{ get_setting('home_about_link',null, App::getLocale()) }}" class="btn btn-md btn-primary text-white text-uppercase fw-400 fs-12 " > {{ translate('visit shop') }} </a>
+                </div>
+            </div>
+        </div>
+        <div class="container mb-5" >
+            <div class="d-none d-lg-block">
+                <div class="row d-flex justify-content-between pt-2">
+                    @php $slider_images = json_decode(get_setting('home_banner1_images'), true);  @endphp
+                    <div class="col-md-6">
+                         <a href="{{ json_decode(get_setting('home_slider_links'), true)[0] }}">
+                                <img src="{{ uploaded_asset($slider_images[0]) }}" class="img-fit" alt="">
+
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{ json_decode(get_setting('home_slider_links'), true)[0] }}">
+                            <img src="{{ uploaded_asset($slider_images[1]) }}" class="img-fit" alt="">
+
+                        </a>
+                   </div>
+
+                </div>
+            </div>
+            <div class="row pt-1 d-lg-none">
+                @php $slider_images = json_decode(get_setting('home_banner1_images'), true);  @endphp
+
+               <div class="col-12 d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[0])}}); background-repeat: no-repeat;background-size: contain;width:100vw;height:245px;background-size: cover;">
+                    <h5 class="text text-white text-uppercase opacity-100 pt-md-2 fs-18 text-center" style="letter-spacing:5px;">{{ json_decode(get_setting('home_banner1_text'), true)[0]  }}</h5>
+               </div>
+               <div class="col-12 d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[1])}}); background-repeat: no-repeat;background-size: contain;width:100vw;height:245px;background-size: cover;">
+                    <h5 class="text text-white text-uppercase opacity-100 pt-md-2 text-center" style="letter-spacing:5px;">{{ json_decode(get_setting('home_banner1_text'), true)[1]  }}</h5>
+                </div>
             </div>
 
-        @endif
+        </div>
+    </section>
 
-    </div> --}}
-    {{-- end banner under section  --}}
+    {{-- about product end  --}}
+
+
 
 
 
@@ -206,153 +182,7 @@
 
 
 
-{{-- static bottom icon banner --}}
-<section class="mt-3" style="background-color: #eeeef0">
-    @if(get_setting('authentic_images') != null)
-    <div class="my-5">
-        <div class="container ">
-                <div class="row no-gutters row-cols-lg-4 row-cols-1">
-                    @foreach (json_decode(get_setting('authentic_images'), true) as $key => $value)
-                        <div class="col  text-center py-3 brd-stat" >
-                            <img src="{{ uploaded_asset($value) }}" class= "mx-auto h-80px">
-                            <span class="text-uppercase text-center fs-12  d-block fw-600">{{ json_decode(get_setting('authetic_names'), true)[$key] }}</span>
-                        </div>
-                    @endforeach
-                </div>
-        </div>
-    </div>
-    @endif
-</section>
 
-
-
-
-
-
-
-
-
-
-    {{-- Banner Section  --}}
-    @if (get_setting('home_banner2_images') != null)
-    <div class="mb-4">
-        <div class="container-fluid" >
-            <div class="row ">
-                 @php $banner_2_imags = json_decode(get_setting('home_banner2_images')); @endphp
-
-                @foreach ($banner_2_imags as $key=>$val )
-
-                    <div class="col-md-4 col-sm-12 tbr d-flex justify-content-center align-items-center"  style=" background: url({{ uploaded_asset($banner_2_imags[$key]) }});background-repeat: no-repeat;background-size: cover;">
-                        <h5 class="text text-uppercase text-white pt-md-2 text-cetner fs-19 fw-700" style="letter-spacing:4px;">{{  json_decode(get_setting('home_banner2_text'), true)[$key]  }}</h5>
-                    </div>
-
-                @endforeach
-
-                {{-- @foreach ($banner_2_imags as $key => $value)  --}}
-                    {{-- <div class="col-xl col-md-6 @if($key==0) pr-md-1 @elseif($key==1) pl-md-1 @endif">
-                        <div class="py-1">
-                            <a href="{{ json_decode(get_setting('home_banner2_links'), true)[$key] }}" class="d-block text-reset">
-                                <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset($banner_2_imags[$key]) }}" alt="{{ env('APP_NAME') }} promo" class="img-fit lazyload w-100">
-                            </a>
-                        </div>
-                    </div> --}}
-
-                {{-- @endforeach --}}
-            </div>
-        </div>
-    </div>
-    @endif
-
-{{-- shop by cattegory --}}
-<section class="mb-5">
-    <div class="container">
-        <div class="row my-3 d-flex flex-column">
-            <div class="col text-center text-cetner mb-3 mb-md-0 my-2 " >
-                <div class="py-4 d-flex align-items-center justify-content-center" style=" background-image: url({{ static_asset('assets/img/backicon.png') }});
-                background-repeat: no-repeat;background-position: center;">
-                    <h5 class="text text-uppercase opacity-80 pt-md-2 text-cetner fs-19 fw-700" style="letter-spacing:4px;">shop by category</h5>
-                </div>
-           </div>
-           <div class="col">
-               <img src="{{ static_asset('assets/img/line.PNG') }}" class="img-fit" alt="">
-           </div>
-        </div>
-      @if(get_setting('banner_under_cat'))
-      <div class="row no-gutters row-cols-lg-5 row-cols-2">
-        {{-- banner_under_cat --}}
-        @php
-            $scats=json_decode(get_setting('banner_under_cat'));
-
-        @endphp
-        @foreach(\App\Category::whereIn('id',$scats)->get() as $cat)
-            <div class="col d-flex justify-content-center align-items-center">
-                <a href="{{ route('products.category',$cat->slug) }}">
-                    <div class="p-0">
-                        <div class="" style="position: relative">
-                            <img src="{{ uploaded_asset($cat->banner) }}" class="img-fit"  alt="">
-                        <div style="position: absolute;
-                            bottom: 0px;
-                            width:100%
-                        "> <div class="py-3 bl2" ><div class="d-flex justify-content-center align-items-center roboto text-white" ><span class="fs-15 " style="letter-spacing:2px;">{{ $cat->name }}</span></div></div></div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        @endforeach
-        <div class="col d-flex justify-content-center align-items-center">
-            <a href="{{ route('search') }}">
-                <div class="p-0">
-                    <div class="" style="position: relative">
-                        <img src="{{ static_asset('assets/img/allproducts.png')}}" class="img-fit"  alt="">
-                    <div style="position: absolute;
-                        bottom: 0px;
-                        width:100%
-                    "> <div class="py-3 bl2" ><div class="d-flex justify-content-center align-items-center roboto text-white" ><span class="">All Products</span></div></div></div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-      @endif
-    </div>
-</section>
-{{-- shop by cattegory end --}}
-    <div class="container-fluid my-5" >
-        <div class="d-none d-lg-block">
-            <div class="row d-flex justify-content-between pt-2">
-                @php $slider_images = json_decode(get_setting('home_banner1_images'), true);  @endphp
-                {{-- <a href="{{ json_decode(get_setting('home_slider_links'), true)[0] }}"> --}}
-                    <div class="col mx-md-1  main-bnr d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[0]) }});background-repeat: no-repeat;height:360px;background-size: 360px;background-size: cover;">
-                        <h5 class="text text-white text-uppercase opacity-100 pt-md-2 fs-18" style="letter-spacing:5px;">{{ json_decode(get_setting('home_banner1_text'), true)[0]  }}</h5>
-
-                    </div>
-                {{-- </a> --}}
-                {{-- <a href="{{ json_decode(get_setting('home_slider_links'), true)[0] }}"> --}}
-                    <div class="col mx-md-1 mr-md-3 main-bnr d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[1]) }}); background-repeat: no-repeat;height:360px;background-size: 360px;background-size: cover;">
-                        <h5 class="text text-white text-uppercase opacity-100 pt-md-2 " style="letter-spacing:5px;">{{ json_decode(get_setting('home_banner1_text'), true)[1]  }}</h5>
-
-                    </div>
-                {{-- </a> --}}
-            </div>
-        </div>
-        <div class="row pt-1 d-lg-none">
-            @php $slider_images = json_decode(get_setting('home_banner1_images'), true);  @endphp
-            {{-- @foreach ($slider_images as $key => $value)
-                <div class="carousel-box">
-                    <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}" class="text-reset d-block">
-
-                    </a>
-                </div>
-            @endforeach --}}
-           <div class="col-12 d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[0])}}); background-repeat: no-repeat;background-size: contain;width:100vw;height:245px;background-size: cover;">
-                <h5 class="text text-white text-uppercase opacity-100 pt-md-2 fs-18 text-center" style="letter-spacing:5px;">{{ json_decode(get_setting('home_banner1_text'), true)[0]  }}</h5>
-           </div>
-           <div class="col-12 d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[1])}}); background-repeat: no-repeat;background-size: contain;width:100vw;height:245px;background-size: cover;">
-                <h5 class="text text-white text-uppercase opacity-100 pt-md-2 text-center" style="letter-spacing:5px;">{{ json_decode(get_setting('home_banner1_text'), true)[1]  }}</h5>
-            </div>
-        </div>
-
-    </div>
 
 <section>
  {{-- home category section  --}}
@@ -360,7 +190,24 @@
 
 </section>
 
-
+{{-- static bottom icon banner --}}
+<section class="mt-3" style="background-color: #ffffff">
+    @if(get_setting('authentic_images') != null)
+    <div class="my-5">
+        <div class="container  bg-white shadow-lg">
+                <div class="row no-gutters row-cols-lg-4 row-cols-1">
+                    @foreach (json_decode(get_setting('authentic_images'), true) as $key => $value)
+                        <div class="col  text-left py-3 px-3 d-flex flex-column  justify-content-left" >
+                            <div class="h-80px">  <img src="{{ uploaded_asset($value) }}"  ></div>
+                            <span  class="text-reset text-dark fw-600 fs-11  text-truncate-2" >{{ json_decode(get_setting('authetic_names'), true)[$key] }}</span>
+                            <span class="text-reset text-dark fw-400 fs-11 mt-1 opacity-60  text-truncate-2">{{ json_decode(get_setting('authetic_desc'), true)[$key] }} </span>
+                        </div>
+                    @endforeach
+                </div>
+        </div>
+    </div>
+    @endif
+</section>
 @endsection
 
 

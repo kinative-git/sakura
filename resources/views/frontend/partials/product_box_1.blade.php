@@ -1,4 +1,4 @@
-<div class="aiz-card-box has-transition hov-shadow-md mx-1 mb-2 mt-1 ">
+<div class="aiz-card-box has-transition shadow-md hov-shadow-lg mx-1 mb-2 mt-1 bg-white">
         @php
         $discount_applicable = false;
         $lowest_price = $product->stocks->min('price');
@@ -42,25 +42,26 @@
             >
         </a>
     </div>
+    <div class="px-2"><hr  style="margin-top:0px;margin-bottom:0px;"></div>
     <div class="px-md-3 pt-3 text-center pb-0 bg-white">
-        <div class="fw-600 fs-12 lh-1-4 mb-1">
-            <a href="{{ route('product', $product->slug) }}" class="text-reset text-dark text-uppercase  fw-400 fs-15 roboto  text-truncate-2" style="height:40px;">{{  $product->name  }}</a>
+        <div class="fw-700 fs-8 lh-1-4 mb-1">
+            <a href="{{ route('product', $product->slug) }}" class="text-reset text-dark fw-600 fs-13  text-truncate-2" style="height:40px;">{{  $product->name  }}</a>
         </div>
         <div class="fs-13 fw-700 text-dark" >
             @if(home_base_price($product) != home_discounted_base_price($product))
-                <del class=" text-uppercase text-alter  fw-400 fs-14 roboto mr-1">{{ home_base_price($product) }}</del>
+                <del class=" text-uppercase text-alter  fw-600 fs-13  mr-1">{{ home_base_price($product) }}</del>
             @endif
-            <span class="text-uppercase text-primary fw-400 fs-14 roboto">{{ home_discounted_base_price($product) }}</span>
+            <span class="text-uppercase text-primary fw-600 fs-13 ">{{ home_discounted_base_price($product) }}</span>
         </div>
         @if($product->variant_product == 1)
-           <div class="d-flex align-items-center justify-content-center">
+           <div class="d-flex align-items-center justify-content-center my-3">
 
-                <button type="button" class="btn text-uppercase text-primary fw-400 fs-14 roboto" onclick="showAddToCartModal({{ $product->id }})"><div class="d-flex align-items-center "><img src="{{ static_asset('assets/img/buy.png') }}" class="mx-2" alt=""><span>buy this item</span></div></button>
+                <button type="button" class="btn btn-primary rounded text-uppercase  fw-400 fs-12 " onclick="showAddToCartModal({{ $product->id }})"><div class="d-flex align-items-center ">visit shop</div></button>
            </div>
         @else
-        <div class="d-flex align-items-center justify-content-center">
+        <div class="d-flex align-items-center justify-content-center mt-2 mb-3">
 
-            <button type="button" class="btn text-uppercase text-primary fw-400 fs-14 roboto" onclick="addToCart(this)" data-id="{{ $product->id }}"> <div class="d-flex align-items-center "><img src="{{ static_asset('assets/img/buy.png') }}" class="mx-2" alt=""><span>buy this item</span></div></button>
+            <button type="button" class="btn  btn-primary rounded text-uppercase  fw-400 fs-12 " onclick="addToCart(this)" data-id="{{ $product->id }}"> <div class="d-flex align-items-center ">visit shop</div></button>
         </div>
 
         @endif

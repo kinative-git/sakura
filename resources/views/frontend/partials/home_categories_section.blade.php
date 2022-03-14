@@ -1,43 +1,43 @@
  @if (get_setting('product_yours_categories') != null)
     @php $product_yours_categories = json_decode(get_setting('product_yours_categories')); @endphp
     <section class="mb-4 ">
-        <div class="container-fluid ">
-            <div class=" bg-white  shadow-sm">
-                <div class="row justify-content-center d-flex flex-column justify-content-center align-items-center my-1">
-                    <div class="col text-center text-cetner mb-3 mb-md-0 my-2 " >
-                         <div class="py-4 d-flex align-items-center justify-content-center " style=" background-image: url({{ static_asset('assets/img/backicon.png') }}); background-repeat: no-repeat;
-                         background-repeat: no-repeat;background-position: center;">
-                             <h5 class="text text-uppercase opacity-80 pt-md-2 text-cetner fs-20 fw-700" style="letter-spacing:5px;">latest to the wodrobe</h5>
+        <div class="container ">
+            <div class="">
+                <div class="row justify-content-center d-flex flex-column justify-content-center align-items-center">
+                    <div class="col text-center text-cetner  mb-md-0 my-2 " >
+                         <div class="py-4 d-flex flex-column align-items-center justify-content-center ">
+                            <div class="d-flex align-items-center text-primary"><div class="line"></div><span class="fs-14 fw-500 mx-3">Created for You</span><div class="line"></div></div>
+                            <h5 class="text  opacity-100 pt-md-2 text-cetner fs-22 fw-700" >shop by category</h5>
                          </div>
                     </div>
                 </div>
-                <div class="d-md-flex mb-3 justify-content-center px-3 py-4 align-items-center ">
+                <div class="d-md-flex mb-3 justify-content-center px-3 align-items-center ">
 
                     <div class="mt-3 mt-md-0 d-none d-lg-block">
-                        <ul class="list-inline nav d-block d-md-flex alig-items-center mobile-hor-swipe py-2" style="background-image: url('{{ static_asset('assets/img/hr_bg.png') }}');background-repeat: no-repeat;background-size: contain;">
-                            <li class="list-inline-item">
-                                <a class="fw-600 text-uppercase text-reset fs-15 p-2 d-inline-block active"  style="letter-spacing:3px " data-toggle="tab" href="#all-category">all products</a>
+                        <ul class="list-inline nav d-block d-md-flex alig-items-center mobile-hor-swipe py-2">
+                            <li class="list-inline-item slct-cat">
+                                <a class="fw-600  text-reset d-inline-block active fs-14 fw-600 px-3 py-2 "   data-toggle="tab" href="#all-category"><span>All products</span></a>
                             </li>
                             @foreach ( \App\Category::whereIn('id',$product_yours_categories)->get() as $key => $category)
 
                                 @if ($category != null)
-                                <li class="list-inline-item">
-                                    <a class="fw-600 text-uppercase text-reset fs-15 p-2 d-inline-block" style="letter-spacing:3px " data-toggle="tab" href="#category-{{ $category->id }}">{{ $category->name }}</a>
+                                <li class="list-inline-item slct-cat">
+                                    <a class="fw-600  text-reset d-inline-block fs-14 fw-600  px-3 py-2"  data-toggle="tab" href="#category-{{ $category->id }}">{{ $category->name }}</a>
                                 </li>
                                 @endif
                             @endforeach
                         </ul>
                     </div>
                     <div class="mt-3 mt-md-0 d-lg-none">
-                        <ul class="list-inline nav d-block d-md-flex alig-items-center mobile-hor-swipe py-2" style="background-image: url('{{ static_asset('assets/img/hr_mobile_bg.png') }}');background-repeat: no-repeat;background-size: contain;background-position: center;">
-                            <li class="list-inline-item">
-                                <a class="fw-600 text-uppercase text-reset fs-15 p-2 d-inline-block active"  style="letter-spacing:3px " data-toggle="tab" href="#all-category">all products</a>
+                        <ul class="list-inline nav d-block d-md-flex alig-items-center mobile-hor-swipe py-2">
+                            <li class="list-inline-item slct-cat">
+                                <a class="fw-600  text-reset d-inline-block active fs-14 fw-600  px-3 py-2"   data-toggle="tab" href="#all-category">All products</a>
                             </li>
                             @foreach ( \App\Category::whereIn('id',$product_yours_categories)->get() as $key => $category)
 
                                 @if ($category != null)
-                                <li class="list-inline-item">
-                                    <a class="fw-600 text-uppercase text-reset fs-15 p-2 d-inline-block" style="letter-spacing:3px " data-toggle="tab" href="#category-{{ $category->id }}">{{ $category->name }}</a>
+                                <li class="list-inline-item slct-cat">
+                                    <a class="fw-600  text-reset d-inline-block fs-14 fw-600  px-3 py-2"  data-toggle="tab" href="#category-{{ $category->id }}">{{ $category->name }}</a>
                                 </li>
                                 @endif
                             @endforeach
