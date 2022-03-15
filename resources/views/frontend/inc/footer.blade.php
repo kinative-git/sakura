@@ -367,7 +367,7 @@
         </div>
     </div>
 </div>
-<div class="">
+<div class="" style="">
     <div class="collapse-sidebar-wrap sidebar-all sidebar-top z-1035 topbar-search">
         <div class="overlay-fixed dark c-pointer" data-toggle="class-toggle" data-target=".topbar-search" data-backdrop="static"></div>
         <div class="bg-white d-flex flex-column shadow-lg   c-scrollbar-light py-4">
