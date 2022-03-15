@@ -191,10 +191,10 @@
 </section>
 
 {{-- static bottom icon banner --}}
-<section class="mt-3" style="background-color: #ffffff">
+<section class="mt-3 py-4" style="background-color: #ffffff">
     @if(get_setting('authentic_images') != null)
     <div class="my-5">
-        <div class="container  bg-white shadow-lg">
+        <div class="container  bg-white shadow-lg my-4">
                 <div class="row no-gutters row-cols-lg-4 row-cols-1">
                     @foreach (json_decode(get_setting('authentic_images'), true) as $key => $value)
                         <div class="col  text-left py-3 px-3 d-flex flex-column  justify-content-left" >
@@ -208,6 +208,108 @@
     </div>
     @endif
 </section>
+
+{{-- big banner  --}}
+<section>
+    <div class="row">
+        <div class="col">
+            <img src="{{ uploaded_asset(json_decode(get_setting('bottom_banner'), true)) }}" class="img-fit" alt="">
+        </div>
+    </div>
+</section>
+
+{{-- big banner end  --}}
+
+
+{{-- customer reviews begin --}}
+<div class="">
+    <div class="container">
+        <div class="row justify-content-center d-flex flex-column justify-content-center align-items-center my-3">
+            <div class="col text-center text-cetner mb-3 mb-md-0 my-2 " >
+                 <div class="py-4 d-flex flex-column align-items-center justify-content-center" >
+                     <div class="d-flex align-items-center text-primary"><div class="line"></div><span class="fs-14 fw-500 mx-3">Satisfied Clients</span><div class="line"></div></div>
+                     <h5 class="text text-uppercase opacity-100 pt-md-2 text-cetner fs-22 fw-700" >review of clients</h5>
+                 </div>
+            </div>
+        </div>
+        <div class="aiz-carousel  dot-small-black pb-5 pt-2" data-items="2" data-xl-items="2" data-lg-items="2"  data-md-items="2" data-sm-items="1" data-xs-items="1" data-dots='true' data-infinite='true'>
+            @if (get_setting('customer_reviews_image') != null)
+                @foreach (json_decode(get_setting('customer_reviews_image'), true) as $key => $value)
+                    <div class="carousel-box p-3">
+                        <div class="p-4  px-5 text-center bg-white shadow-lg">
+                            <img src="{{ static_asset('assets/img/quote_icon.png') }}" class=" mb-3 mx-auto">
+
+                            <div class="lh-1-7 font-italic mb-3 opacity-100 fs-14 fw-500"  style="color:#868686;">{{ json_decode(get_setting('customer_reviews_details'), true)[$key] }}</div>
+
+                            <div class="mb-3 fw-700 d-flex justify-content-center align-items-center">
+                                <img src="{{ uploaded_asset($value) }}" class="size-60px rounded-circle img-fit mb-3 mx-2">
+                                <div class="d-flex flex-column justify-content-start text-left">
+                                    <span class="">{{ json_decode(get_setting('customer_reviews_name'), true)[$key] }}</span>
+                                    <span class="" style="color:#868686;" >{{ json_decode(get_setting('customer_reviews_title'), true)[$key] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+    </div>
+</div>
+
+
+{{-- customer review end  --}}
+
+{{-- inside our dactory  --}}
+
+
+<section>
+    <div class="row justify-content-center d-flex flex-column justify-content-center align-items-center my-3">
+        <div class="col text-center text-cetner mb-3 mb-md-0 my-2 " >
+             <div class="py-4 d-flex flex-column align-items-center justify-content-center" >
+                 <div class="d-flex align-items-center text-primary"><div class="line"></div><span class="fs-14 fw-500 mx-3">Where Magic Happens</span><div class="line"></div></div>
+                 <h5 class="text text-uppercase opacity-100 pt-md-2 text-cetner fs-22 fw-700" >Inside Our Factory</h5>
+             </div>
+        </div>
+    </div>
+    <div class="row d-flex  align-items-center">
+        @if(get_setting('home_banner2_images') != null)
+        <div class="aiz-carousel half-outside-arrow dot-small-black " data-xl-items="6" data-lg-items="6"  data-md-items="6" data-sm-items="2" data-xs-items="2"  data-items="2" data-infinite='true' data-autoplay="true" data-dots="false">
+            @foreach (json_decode(get_setting('home_banner2_images'), true) as $key => $value)
+                    <div class="carousel-box p-0 m-0">
+                        <div class="d-flex flex-column justify-content-center align-items-center" >
+                            <img src="{{ uploaded_asset($value) }}" style="height: 235px;width:100%;" alt="">
+                        </div>
+                    </div>
+
+            @endforeach
+        </div>
+
+        @endif
+    </div>
+
+</section>
+
+<section>
+    <section class="py-5 my-4">
+        <div class="container ">
+
+            <div class="shadow-lg p-2 p-lg-4 bg-white">
+                <div class="row aiz-carousel gutters-5 dot-small-black" data-items="7" data-xl-items="6" data-lg-items="6"  data-md-items="6" data-sm-items="2" data-xs-items="2" data-autoplay="true" data-dots="true">
+                    @foreach(explode(',',get_setting('corporate_clients')) as $id)
+                        <div class="carousel-box col" style="width: 100%;height:100%;">
+                           <div class="d-flex justify-content-center align-items-center my-auto" >
+                            <img src="{{ uploaded_asset($id) }}" >
+                           </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+{{-- inside oru factory --}}
+
 @endsection
 
 

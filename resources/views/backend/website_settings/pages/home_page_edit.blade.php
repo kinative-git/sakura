@@ -179,7 +179,50 @@
 			</div>
 		</div>
 
+        <div class="card">
+			<div class="card-header">
+				<h6 class="mb-0">{{ translate('Bottom Banner') }}</h6>
+			</div>
+			<div class="card-body">
+				<form action="{{ route('business_settings.update') }}" method="POST" enctype="multipart/form-data">
+					@csrf
+                    <label>{{ translate('About Image') }}</label>
+					<div class="home-about-target">
+						<input type="hidden" name="types[]" value="bottom_banner">
+						{{-- @if (get_setting('bottom_banner') != null) --}}
 
+								<div class="row gutters-5">
+									<div class="col-md-6">
+										<div class="form-group">
+											<div class="input-group" data-toggle="aizuploader" data-type="image">
+				                                <div class="input-group-prepend">
+				                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
+				                                </div>
+				                                <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+				                                <input type="hidden" name="bottom_banner" class="selected-files" value="{{ json_decode(get_setting('bottom_banner'), true) }}">
+				                            </div>
+				                            <div class="file-preview box sm">
+				                            </div>
+			                            </div>
+									</div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="hidden" name="types[]" value="bottom_banner_link">
+												<input type="text" class="form-control" placeholder="http://" name="bottom_banner_link" value="{{ json_decode(get_setting('bottom_banner_link'), true) }}">
+                                        </div>
+                                    </div>
+
+								</div>
+                        {{-- @endif --}}
+
+					</div>
+
+					<div class="text-right">
+						<button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
+					</div>
+				</form>
+			</div>
+		</div>
 
 		{{-- category wise product filter --}}
 		<div class="card">
@@ -409,7 +452,7 @@
 		{{-- Home Banner 2 --}}
 		<div class="card">
 			<div class="card-header">
-				<h6 class="mb-0">{{ translate('Banner (Max 3)') }}</h6>
+				<h6 class="mb-0">{{ translate('Banner (Max 6)') }}</h6>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('business_settings.update') }}" method="POST" enctype="multipart/form-data">
@@ -706,6 +749,168 @@
                 </form>
             </div>
         </div>
+           {{-- Customer review --}}
+		<div class="card">
+			<div class="card-header">
+				<h6 class="mb-0">{{ translate('Customer review') }}</h6>
+			</div>
+			<div class="card-body">
+				<form action="{{ route('business_settings.update') }}" method="POST" enctype="multipart/form-data">
+					@csrf
+
+					<div class="form-group">
+						<label>{{ translate('Reviews') }}</label>
+						<div class="customer-review-target">
+							<input type="hidden" name="types[]" value="customer_reviews_image">
+							<input type="hidden" name="types[]" value="customer_reviews_name">
+							<input type="hidden" name="types[]" value="customer_reviews_title">
+							<input type="hidden" name="types[]" value="customer_reviews_details">
+							@if (get_setting('customer_reviews_image') != null)
+								@foreach (json_decode(get_setting('customer_reviews_image'), true) as $key => $value)
+									<div class="row gutters-5">
+										<div class="col-lg-3">
+											<div class="form-group">
+												<div class="input-group" data-toggle="aizuploader" data-type="image">
+					                                <div class="input-group-prepend">
+					                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
+					                                </div>
+					                                <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+													<input type="hidden" name="types[]" value="customer_reviews_image">
+					                                <input type="hidden" name="customer_reviews_image[]" class="selected-files" value="{{ json_decode(get_setting('customer_reviews_image'), true)[$key] }}">
+					                            </div>
+					                            <div class="file-preview box sm">
+					                            </div>
+				                            </div>
+										</div>
+										<div class="col-lg-2">
+											<div class="form-group">
+												<input type="hidden" name="types[]" value="customer_reviews_name">
+												<input type="text" class="form-control" placeholder="{{ translate('Name') }}" name="customer_reviews_name[]" value="{{ json_decode(get_setting('customer_reviews_name'), true)[$key] }}">
+											</div>
+										</div>
+										<div class="col-lg-2">
+											<div class="form-group">
+												<input type="hidden" name="types[]" value="customer_reviews_title">
+												<input type="text" class="form-control" placeholder="{{ translate('Title') }}" name="customer_reviews_title[]" value="{{ json_decode(get_setting('customer_reviews_title'), true)[$key] }}">
+											</div>
+										</div>
+										<div class="col-lg">
+											<div class="form-group">
+												<input type="hidden" name="types[]" value="customer_reviews_details">
+												<input type="text" class="form-control" placeholder="{{ translate('Details') }}" name="customer_reviews_details[]" value="{{ json_decode(get_setting('customer_reviews_details'), true)[$key] }}">
+											</div>
+										</div>
+										<div class="col-auto">
+											<button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">
+												<i class="las la-times"></i>
+											</button>
+										</div>
+									</div>
+								@endforeach
+							@endif
+						</div>
+
+						<button
+							type="button"
+							class="btn btn-soft-secondary btn-sm"
+							data-toggle="add-more"
+							data-content='
+							<div class="row gutters-5">
+								<div class="col-lg-3">
+									<div class="form-group">
+										<div class="input-group" data-toggle="aizuploader" data-type="image">
+			                                <div class="input-group-prepend">
+			                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
+			                                </div>
+			                                <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+											<input type="hidden" name="types[]" value="customer_reviews_image">
+			                                <input type="hidden" name="customer_reviews_image[]" class="selected-files" >
+			                            </div>
+			                            <div class="file-preview box sm">
+			                            </div>
+		                            </div>
+								</div>
+								<div class="col-lg-2">
+									<div class="form-group">
+										<input type="hidden" name="types[]" value="customer_reviews_name">
+										<input type="text" class="form-control" placeholder="{{ translate('Title') }}" name="customer_reviews_name[]" >
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="form-group">
+										<input type="hidden" name="types[]" value="customer_reviews_title">
+										<input type="text" class="form-control" placeholder="{{ translate('Subtitle') }}" name="customer_reviews_title[]" >
+									</div>
+								</div>
+								<div class="col-lg">
+									<div class="form-group">
+										<input type="hidden" name="types[]" value="customer_reviews_details">
+										<input type="text" class="form-control" placeholder="{{ translate('Details') }}" name="customer_reviews_details[]" >
+									</div>
+								</div>
+								<div class="col-auto">
+									<button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">
+										<i class="las la-times"></i>
+									</button>
+								</div>
+							</div>'
+							data-target=".customer-review-target">
+							{{ translate('Add New') }}
+						</button>
+					</div>
+
+					<div class="text-right">
+						<button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
+					</div>
+				</form>
+			</div>
+		</div>
+        	{{-- Top 10 --}}
+		<div class="card">
+			<div class="card-header">
+				<h6 class="mb-0">{{ translate('Corporate clients') }}</h6>
+			</div>
+			<div class="card-body">
+				<form action="{{ route('business_settings.update') }}" method="POST" enctype="multipart/form-data">
+					@csrf
+	                <div class="form-group row">
+						<label class="col-md-3 col-from-label">{{translate('Title')}}</label>
+						<div class="col-md-8">
+							<div class="form-group">
+								<input type="hidden" name="types[][{{ $lang }}]" value="corporate_client_title">
+								<input type="text" class="form-control" placeholder="" name="corporate_client_title" value="{{ get_setting('corporate_client_title', null, $lang) }}">
+							</div>
+						</div>
+					</div>
+	                <div class="form-group row">
+						<label class="col-md-3 col-from-label">{{translate('Sub title')}}</label>
+						<div class="col-md-8">
+							<div class="form-group">
+								<input type="hidden" name="types[][{{ $lang }}]" value="corporate_client_subtitle">
+								<input type="text" class="form-control" placeholder="" name="corporate_client_subtitle" value="{{ get_setting('corporate_client_subtitle', null, $lang) }}">
+							</div>
+						</div>
+					</div>
+					<div class="corporate-client-target">
+						<input type="hidden" name="types[]" value="corporate_clients">
+						<div class="form-group">
+							<div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple='true'>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
+                                </div>
+                                <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+                                <input type="hidden" name="corporate_clients" class="selected-files" value="{{ get_setting('corporate_clients') }}">
+                            </div>
+                            <div class="file-preview box sm">
+                            </div>
+                        </div>
+					</div>
+					<div class="text-right">
+						<button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
 
