@@ -70,7 +70,10 @@
                         </a>
                         <div class=" h-100 d-lg-none ml-1  mt-md-2 ml-md-2 social" id="wishlist">
                             {{-- <a class="p-1 d-lg-none  text-primary   mt-2 mr-2" href="javascript:void(0);" > --}}
-                                <img data-toggle="class-toggle" data-target=".topbar-search"  src="{{ static_asset('assets/img/magni.png') }}" alt="" >
+                                <a href="javascript:void(0);" class="btn btn-icon btn-circle btn-primary text-alter-2 fw-800 src-btn left-half-circle  right-half-circle text-center" style="height: 2.45rem;width:2.45rem;"  data-toggle="class-toggle" data-target=".topbar-search">
+                                    <i class="la la-search la-flip-horizontal fs-23 fw-700"></i>
+                                </a>
+                                {{-- <img  src="{{ static_asset('assets/img/magni.png') }}" alt="" > --}}
                             {{-- </a> --}}
 
                         </div>
