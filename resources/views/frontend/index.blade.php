@@ -70,7 +70,7 @@
     {{-- about product start --}}
     <section class="py-lg-5 py-4 my-5 position-relative bg-white">
         <div class="container">
-            <div class="row py-lg-5 d-flex align-items-center">
+            <div class="row py-lg-5 py-3 d-flex align-items-center">
                 <div class="col-lg-6 my-4">
                     <img src="{{ uploaded_asset(get_setting('home_about_image')) }}" class="img-fluid w-100" alt="">
                 </div>
@@ -103,14 +103,15 @@
 
                 </div>
             </div>
-            <div class="row pt-1 d-lg-none">
+            <div class="row pt-4  mt-2 d-lg-none">
                 @php $slider_images = json_decode(get_setting('home_banner1_images'), true);  @endphp
 
-               <div class="col-12 d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[0])}}); background-repeat: no-repeat;background-size: contain;width:100vw;height:245px;background-size: cover;">
-                    <h5 class="text text-white text-uppercase opacity-100 pt-md-2 fs-18 text-center" style="letter-spacing:5px;">{{ json_decode(get_setting('home_banner1_text'), true)[0]  }}</h5>
+               <div class="col-12 d-flex flex-column justify-content-center align-items-center  mb-2" >
+                <img src="{{ uploaded_asset($slider_images[0]) }}" class="img-fit" alt="">
                </div>
-               <div class="col-12 d-flex flex-column justify-content-center align-items-center" style=" background: url({{ uploaded_asset($slider_images[1])}}); background-repeat: no-repeat;background-size: contain;width:100vw;height:245px;background-size: cover;">
-                    <h5 class="text text-white text-uppercase opacity-100 pt-md-2 text-center" style="letter-spacing:5px;">{{ json_decode(get_setting('home_banner1_text'), true)[1]  }}</h5>
+               <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                <img src="{{ uploaded_asset($slider_images[1]) }}" class="img-fit" alt="">
+
                 </div>
             </div>
 
@@ -195,7 +196,7 @@
     @if(get_setting('authentic_images') != null)
     <div class="my-5">
         <div class="container  bg-white shadow-lg my-4">
-                <div class="row no-gutters row-cols-lg-4 row-cols-1">
+                <div class="row no-gutters row-cols-lg-4 row-cols-2">
                     @foreach (json_decode(get_setting('authentic_images'), true) as $key => $value)
                         <div class="col  text-left py-3 px-3 d-flex flex-column  justify-content-left" >
                             <div class="h-80px">  <img src="{{ uploaded_asset($value) }}"  ></div>
@@ -224,15 +225,15 @@
 {{-- customer reviews begin --}}
 <div class="">
     <div class="container">
-        <div class="row justify-content-center d-flex flex-column justify-content-center align-items-center my-3">
-            <div class="col text-center text-cetner mb-3 mb-md-0 my-2 " >
-                 <div class="py-4 d-flex flex-column align-items-center justify-content-center" >
+        <div class="row justify-content-center d-flex flex-column justify-content-center align-items-center my-md-3 mt-3">
+            <div class="col text-center text-cetner mb-md-3 my-2 " >
+                 <div class="py-md-4 d-flex flex-column align-items-center justify-content-center" >
                      <div class="d-flex align-items-center text-primary"><div class="line"></div><span class="fs-14 fw-500 mx-3">Satisfied Clients</span><div class="line"></div></div>
                      <h5 class="text text-uppercase opacity-100 pt-md-2 text-cetner fs-22 fw-700" >review of clients</h5>
                  </div>
             </div>
         </div>
-        <div class="aiz-carousel  dot-small-black pb-5 pt-2" data-items="2" data-xl-items="2" data-lg-items="2"  data-md-items="2" data-sm-items="1" data-xs-items="1" data-dots='true' data-infinite='true'>
+        <div class="aiz-carousel  dot-small-black pb-5 pt-md-2" data-items="2" data-xl-items="2" data-lg-items="2"  data-md-items="2" data-sm-items="1" data-xs-items="1" data-dots='true' data-infinite='true'>
             @if (get_setting('customer_reviews_image') != null)
                 @foreach (json_decode(get_setting('customer_reviews_image'), true) as $key => $value)
                     <div class="carousel-box p-3">
@@ -273,19 +274,29 @@
     </div>
     <div class="row d-flex  align-items-center">
         @if(get_setting('home_banner2_images') != null)
-        <div class="aiz-carousel half-outside-arrow dot-small-black " data-xl-items="6" data-lg-items="6"  data-md-items="6" data-sm-items="2" data-xs-items="2"  data-items="2" data-infinite='true' data-autoplay="true" data-dots="false">
+        <div class="aiz-carousel half-outside-arrow dot-small-black col d-none d-lg-block" data-xl-items="6" data-lg-items="6"  data-md-items="6" data-sm-items="2" data-xs-items="2"  data-items="2" data-infinite='true' data-autoplay="true" data-dots="false">
             @foreach (json_decode(get_setting('home_banner2_images'), true) as $key => $value)
                     <div class="carousel-box p-0 m-0">
-                        <div class="d-flex flex-column justify-content-center align-items-center" >
+
                             <img src="{{ uploaded_asset($value) }}" style="height: 235px;width:100%;" alt="">
-                        </div>
+
                     </div>
 
             @endforeach
         </div>
+        <div class="aiz-carousel half-outside-arrow dot-small-black col d-lg-none " data-xl-items="6" data-lg-items="6"  data-md-items="6" data-sm-items="2" data-xs-items="2"  data-items="2" data-infinite='true' data-autoplay="true" data-dots="false">
+            @foreach (json_decode(get_setting('home_banner2_images'), true) as $key => $value)
+                    <div class="carousel-box ">
 
+                            <img src="{{ uploaded_asset($value) }}"  alt="">
+
+                    </div>
+
+            @endforeach
+        </div>
         @endif
     </div>
+
 
 </section>
 
@@ -313,21 +324,7 @@
 @endsection
 
 
-@section('modal')
-<div class="modal fade" id="video_modal" tabindex="-1" role="dialog" aria-labelledby="video_modalLabel" aria-hidden="true" style="margin-top: 20vh;">
-    <div class="modal-dialog" role="document">
-          <div class="modal-content" style="background-color: #eeeef000;border:none;outline:none;">
-                @if( get_setting('promo_video'))
-                <div style="height: 400px;width:560px;">
-                    {!!  get_setting('promo_video') !!}
-                    </div>
-                @else
-                <h5 class="text text-orange text-center"> No Video Given..!!</h5>
-                @endif
-          </div>
-    </div>
-  </div>
-@endsection
+
 @section('script')
     <script>
         $(document).ready(function(){
@@ -335,7 +332,6 @@
                 $('#section_home_categories').html(data);
                 AIZ.plugins.slickCarousel();
             });
-
 
         });
     </script>

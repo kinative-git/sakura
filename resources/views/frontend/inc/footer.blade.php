@@ -172,10 +172,19 @@
 <!-- FOOTER -->
 <footer class=" bg-primary">
     <div class="container">
-        <div class="row d-flex align-items-center justify-content-center">
-            <div class="col-lg-6 d-flex justify-content-start align-items-center">
-                <div class="text-left text-alter-2 text-md-center fs-14 fw-300 opacity-80 roboto "  current-verison="{{get_setting("current_version")}}" >
-                    {!! get_setting('frontend_copyright_text',null,App::getLocale()) !!}
+        <div class="row d-flex align-items-center ">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-flex justify-content-start align-items-center">
+                    <div class="text-left text-alter-2 text-md-center fs-14 fw-300 opacity-80 roboto "  current-verison="{{get_setting("current_version")}}" >
+                        {!! get_setting('frontend_copyright_text',null,App::getLocale()) !!}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 d-lg-none">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="text-left text-alter-2 text-md-center fs-14 fw-300 opacity-80 roboto "  current-verison="{{get_setting("current_version")}}" >
+                        {!! get_setting('frontend_copyright_text',null,App::getLocale()) !!}
+                    </div>
                 </div>
             </div>
                 <div class="col-lg-6 d-flex justify-content-end align-items-center">
@@ -367,7 +376,7 @@
         </div>
     </div>
 </div>
-<div class="" style="">
+<div class="">
     <div class="collapse-sidebar-wrap sidebar-all sidebar-top z-1035 topbar-search">
         <div class="overlay-fixed dark c-pointer" data-toggle="class-toggle" data-target=".topbar-search" data-backdrop="static"></div>
         <div class="bg-white d-flex flex-column shadow-lg   c-scrollbar-light py-4">

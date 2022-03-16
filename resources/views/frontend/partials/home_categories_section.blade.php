@@ -46,7 +46,7 @@
                 </div>
                 <div class="tab-content px-3" style="min-height: 20rem;">
                     <div class="tab-pane fade show active" id="all-category" >
-                        <div class="row row-cols-xxl-6 row-cols-lg-5 row-cols-md-5 row-cols-sm-3 row-cols-1 gutters-5">
+                        <div class="row row-cols-xxl-6 row-cols-lg-5 row-cols-md-5 row-cols-sm-2 row-cols-2 gutters-5">
                             @foreach (\App\Product::where('published', '1')->latest()->with('stocks')->limit(10)->get() as $key => $product)
                             <div class="col mb-2">
                                 @include('frontend.partials.product_box_1',['product'=>$product])
@@ -64,7 +64,7 @@
                         @php $category = \App\Category::find($value); @endphp
                         @if ($category != null)
                             <div class="tab-pane fade" id="category-{{ $category->id }}" >
-                                <div class="row row-cols-xl-6 row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-1 gutters-5">
+                                <div class="row row-cols-xl-6 row-cols-lg-5 row-cols-md-5 row-cols-sm-2 row-cols-2 gutters-5">
                                     @foreach (get_cached_products( $category->id) as $key => $product)
                                     <div class="col mb-2">
                                         @include('frontend.partials.product_box_1',['product'=>$product])
