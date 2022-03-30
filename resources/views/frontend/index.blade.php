@@ -19,11 +19,11 @@
     </div>
 
     {{-- featured cats start --}}
-
+`
     <section class="mt-5">
         <div class="container my-3">
 
-            <div class="aiz-carousel half-outside-arrow dot-small-black gutters-5" data-xl-items="5" data-lg-items="5"  data-md-items="5" data-sm-items="2" data-xs-items="2"  data-items="2" data-infinite='true' data-autoplay="false" data-dots="false">
+            <div class="aiz-carousel half-outside-arrow dot-small-black gutters-5" data-xl-items="5" data-lg-items="5" data-items="5" data-md-items="5" data-sm-items="2" data-xs-items="2"  data-items="2" data-infinite='true' data-autoplay="false" data-dots="false">
                 @foreach (\App\Category::where('featured','1')->get() as $key => $cat)
 
                         <div class="carousel-box ">
@@ -53,7 +53,7 @@
         </div>
         <section>
             <div class="container">
-                <div class="aiz-carousel half-outside-arrow dot-small-black gutters-5" data-xl-items="5" data-lg-items="5"  data-md-items="5" data-sm-items="2" data-xs-items="2"  data-items="2" data-infinite='true' data-autoplay="false" data-dots="true">
+                <div class="aiz-carousel half-outside-arrow dot-small-black gutters-5" data-xxl-items='5' data-xl-items="5" data-lg-items="5"  data-md-items="5" data-sm-items="2" data-xs-items="2"  data-items="5" data-infinite='true' data-autoplay="false" data-dots="true">
                     @foreach (\App\Product::where('featured','1')->get() as $key => $product)
                         @if ($product != null && $product->published != 0)
                             <div class="carousel-box ">
