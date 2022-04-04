@@ -225,7 +225,7 @@
 		</div>
 
 		{{-- category wise product filter --}}
-		<div class="card">
+		{{-- <div class="card">
 			<div class="card-header">
 				<h6 class="mb-0">{{ translate('Category wise product filter') }}</h6>
 			</div>
@@ -251,9 +251,9 @@
 					</div>
 				</form>
 			</div>
-		</div>
+		</div> --}}
         {{-- main slider under category section --}}
-        <div class="card">
+        {{-- <div class="card">
             <div class="card-header">
                 <h6 class="mb-0">{{ translate('Main Slider Under Category') }}</h6>
             </div>
@@ -282,9 +282,9 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
          {{-- main slider under category section --}}
-         <div class="card">
+         {{-- <div class="card">
             <div class="card-header">
                 <h6 class="mb-0">{{ translate('Stativ features Under Category') }}</h6>
             </div>
@@ -313,7 +313,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
          {{-- featuired for you  category section --}}
          <div class="card">
             <div class="card-header">
@@ -556,14 +556,14 @@
 
 
 		{{-- Top 10 --}}
-		<div class="card">
+		{{-- <div class="card">
 			<div class="card-header">
 				<h6 class="mb-0">{{ translate('Top Brands &') }}</h6>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('business_settings.update') }}" method="POST" enctype="multipart/form-data">
 					@csrf
-					{{-- <div class="form-group row">
+					<div class="form-group row">
 						<label class="col-md-2 col-from-label">{{translate('Categories')}}</label>
 						<div class="col-md-10">
 							<input type="hidden" name="types[]" value="top10_categories">
@@ -576,7 +576,7 @@
 								@endforeach
 							</select>
 						</div>
-					</div> --}}
+					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-from-label">{{translate('Brands (Max 10)')}}</label>
 						<div class="col-md-10">
@@ -593,7 +593,7 @@
 					</div>
 				</form>
 			</div>
-		</div>
+		</div> --}}
 
         {{-- icons qith text  --}}
         <div class="card">
@@ -699,7 +699,7 @@
 			</div>
 		</div>
         	{{-- Featured shops --}}
-		<div class="card">
+		{{-- <div class="card">
 			<div class="card-header">
 				<h6 class="mb-0">{{ translate('Featured shops') }}</h6>
 			</div>
@@ -724,8 +724,8 @@
 					</div>
 				</form>
 			</div>
-		</div>
-        <div class="card ">
+		</div> --}}
+        {{-- <div class="card ">
             <div class="card-header">
                 <h6 class="mb-0">{{ translate('Promo Branding') }}</h6>
             </div>
@@ -748,7 +748,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
            {{-- Customer review --}}
 		<div class="card">
 			<div class="card-header">
